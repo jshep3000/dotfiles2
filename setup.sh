@@ -15,16 +15,10 @@ brew "fish"
 brew "vim"
 EOF
 
-if [ ! $(brew cask list iterm2) ]; then
-  echo "Installing iTerm..."
-  brew cask install iterm2
-fi
+brew cask list iterm2 || brew cask install iterm2
 
 brew tap caskroom/fonts
-if [ ! $(brew cask list font-hack-nerd-font) ]; then
-  brew cask install font-hack-nerd-font
-fi
-
+brew cask list font-hack-nerd-font || brew cask install font-hack-nerd-font
 
 sudo dscl . -create /Users/$USER UserShell /usr/local/bin/fish
 
