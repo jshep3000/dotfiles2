@@ -37,3 +37,6 @@ if [ ! -d "$VUNDLE_DIR" ]; then
 fi
 
 bash < <(curl -Ls https://github.com/jshep3000/vim-jsheppard/raw/master/scripts/setup.sh)
+
+# True color tmux configuration
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
