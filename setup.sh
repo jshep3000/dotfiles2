@@ -15,7 +15,10 @@ brew "fish"
 brew "vim"
 EOF
 
-brew cask list iterm2 || brew cask install iterm2
+if [ ! -e /Applications/iTerm.app ]; then
+  echo "Installing iTerm2..."
+  brew cask install iterm2
+fi
 
 brew tap caskroom/fonts
 brew cask list font-hack-nerd-font || brew cask install font-hack-nerd-font
