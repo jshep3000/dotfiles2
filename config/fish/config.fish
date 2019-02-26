@@ -1,14 +1,16 @@
 set fish_greeting
 fish_vi_key_bindings
 
-# Set the default user to remove user@host
-set DEFAULT_USER test
-
 if not functions -q fisher
     set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
     curl https://git.io/fisher --create-dirs -sLo $XDG_CONFIG_HOME/fish/functions/fisher.fish
     fish -c fisher
 end
+
+set -x RDK_DEV 10.20.248.17
+set -x OPENSTACK 96.118.156.142
+
+source ~/.config/fish/functions/fish_aliases.fish
 
 #function fish_right_prompt -d "Write out the right prompt"
 #    # Do nothing if not in vi mode
