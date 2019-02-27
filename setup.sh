@@ -27,6 +27,10 @@ sudo dscl . -create /Users/$USER UserShell /usr/local/bin/fish
 
 mkdir -p ~/.config/fish
 
+mkdir -p ~/.tmux
+# True color tmux configuration
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 ln -s "$SCRIPTPATH"/config/fish/config.fish ~/.config/fish/config.fish || true
 mkdir -p ~/.config/fish/functions
@@ -41,5 +45,3 @@ fi
 
 bash < <(curl -Ls https://github.com/jshep3000/vim-jsheppard/raw/master/scripts/setup.sh)
 
-# True color tmux configuration
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
