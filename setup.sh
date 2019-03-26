@@ -13,6 +13,7 @@ brew bundle install --file=- <<-EOF
 brew "tmux"
 brew "fish"
 brew "vim"
+brew "maven"
 EOF
 
 if [ ! -e /Applications/iTerm.app ]; then
@@ -27,9 +28,11 @@ sudo dscl . -create /Users/$USER UserShell /usr/local/bin/fish
 
 mkdir -p ~/.config/fish
 
-mkdir -p ~/.tmux
 # True color tmux configuration
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+mkdir -p ~/.tmux
+if [ ! -e ~/.tmux/plugins/tpm ]; then
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
 
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 ln -s "$SCRIPTPATH"/config/fish/config.fish ~/.config/fish/config.fish || true
