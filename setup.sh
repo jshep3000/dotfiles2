@@ -1,19 +1,23 @@
 #!/bin/bash
 set -o errexit
 
+if [ ! $(which git) ]; then
+  echo "Installing git"
+  xcode-select --install
+fi
+
 if [ ! $(which brew) ]; then
   echo "Installing Homebrew..."
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 fi
 
 brew update
 brew upgrade || true
-brew tap caskroom/cask
+brew cask list
 brew bundle install --file=- <<-EOF
 brew "tmux"
 brew "fish"
 brew "vim"
-brew "maven"
 EOF
 
 if [ ! -e /Applications/iTerm.app ]; then
@@ -21,8 +25,8 @@ if [ ! -e /Applications/iTerm.app ]; then
   brew cask install iterm2
 fi
 
-brew tap caskroom/fonts
-brew cask list font-hack-nerd-font || brew cask install font-hack-nerd-font
+brew tap homebrew/cask-fonts
+brew cask install font-hack-nerd-font
 
 sudo dscl . -create /Users/$USER UserShell /usr/local/bin/fish
 
